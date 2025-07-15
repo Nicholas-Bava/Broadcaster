@@ -2,24 +2,22 @@ package chainofresponsibility;
 
 import broadcastershared.CommonBroadcastComponent;
 import broadcastershared.Message;
-import broadcastershared.Logger;
 
-import java.util.Random;
-import java.util.concurrent.BlockingQueue;
 
 public abstract class Handler extends CommonBroadcastComponent implements Runnable {
 
-    protected Handler nextComponent;
-    protected Handler firstComponent;
+    protected CommonBroadcastComponent nextComponent;
+    protected CommonBroadcastComponent firstComponent;
 
 
-    public Handler(String ID, Handler firstComponent) {
+    public Handler(String ID, CommonBroadcastComponent firstComponent) {
         super(ID,"chain_logs/" + ID + "_log.txt");
 
         this.firstComponent = firstComponent;
     }
 
-    protected boolean handleMessage(Message msg){
+    @Override
+    public boolean handleMessage(Message msg){
 
         // Forward if receiving own message
         if (msg.getSenderID().equals(ID)) {
@@ -33,28 +31,25 @@ public abstract class Handler extends CommonBroadcastComponent implements Runnab
     };
 
     @Override
-    protected void generateMessages() {
+    public void generateMessages() {
 
         try {
             // Wait 1-20 seconds (0-19 plus 1)
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message commandMessage = generateCommandMessage();
-
             forwardMessage(commandMessage);
 
             // Wait 1-20 seconds (0-19 plus 1)
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message broadcastToAll = generateTextMessageToAll();
-
             forwardMessage(broadcastToAll);
 
             // Wait 1-20 seconds (0-19 plus 1)
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message broadcastToRandom = generateRandomTextMessage();
-
             forwardMessage(broadcastToRandom);
 
         } catch (InterruptedException e) {
@@ -83,19 +78,20 @@ public abstract class Handler extends CommonBroadcastComponent implements Runnab
 
 
 
-    public Handler getFirstComponent() {
+    public CommonBroadcastComponent getFirstComponent() {
         return firstComponent;
     }
 
-    public void setFirstComponent(Handler firstComponent) {
+    public void setFirstComponent(CommonBroadcastComponent firstComponent) {
         this.firstComponent = firstComponent;
     }
 
-    public Handler getNextComponent() {
+    public CommonBroadcastComponent getNextComponent() {
         return nextComponent;
     }
 
-    public void setNextComponent(Handler nextComponent) {
+    @Override
+    public void setNextComponent(CommonBroadcastComponent nextComponent) {
         this.nextComponent = nextComponent;
     }
 

@@ -1,10 +1,9 @@
 package mediator;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import broadcastershared.CommonBroadcastComponent;
+import broadcastershared.CommonSimulation;
 
-public class MediatorSimulation {
+public class MediatorSimulation extends CommonSimulation {
 
     public static void main(String[] args) {
         createDirectory("mediator_logs");
@@ -14,73 +13,23 @@ public class MediatorSimulation {
         // Singleton :)
         Mediator mediator = new Mediator();
 
-        List<Component> components = new ArrayList<>();
-
         for (int i = 1; i <= 10; i++) {
-            Component comp = new Component("COMP_" + i, mediator);
+            CommonBroadcastComponent comp = new Component("COMP_" + i, mediator);
             mediator.addComponent(comp);
             components.add(comp);
         }
 
         // Start all components
-        List<Thread> threads = new ArrayList<>();
-        for (Component component : components) {
-            Thread thread = new Thread(component);
-            threads.add(thread);
-            thread.start();
-        }
+        createAndStartThreads();
 
         // Run for 60 seconds
-        try {
-            Thread.sleep(60000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        runForTime(60000);
 
         // Stop threads
-        for (Thread thread : threads) {
-            thread.interrupt();
-        }
-
-
+        interuptThreads();
 
         System.out.println("Mediator Pattern completed. Check mediator_logs/ directory.");
 
     }
 
-    public static boolean createDirectory(String dirPath) {
-        File dir = new File(dirPath);
-
-        // Delete if exists
-        if (dir.exists()) {
-            if (deleteDirectory(dir)) {
-                System.out.println("Deleted existing directory: " + dirPath);
-            } else {
-                System.err.println("Failed to delete directory: " + dirPath);
-                return false;
-            }
-        }
-
-        if (dir.mkdirs()) {
-            System.out.println("Created fresh directory: " + dirPath);
-            return true;
-        } else {
-            System.err.println("Failed to create directory: " + dirPath);
-            return false;
-        }
-    }
-
-    private static boolean deleteDirectory(File dir) {
-        if (dir.isDirectory()) {
-            File[] files = dir.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (!deleteDirectory(file)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return dir.delete();
-    }
 }

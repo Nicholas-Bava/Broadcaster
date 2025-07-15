@@ -1,10 +1,8 @@
 package mediator;
 
 import broadcastershared.CommonBroadcastComponent;
-import broadcastershared.Logger;
 import broadcastershared.Message;
 
-import java.util.Random;
 
 public class Component extends CommonBroadcastComponent {
 
@@ -15,6 +13,7 @@ public class Component extends CommonBroadcastComponent {
         this.mediator = mediator;
     }
 
+    @Override
     public boolean handleMessage(Message msg) {
         if (msg.getSenderID().equals(ID)) {
             return true;
@@ -26,13 +25,12 @@ public class Component extends CommonBroadcastComponent {
     }
 
     @Override
-    protected void generateMessages(){
+    public void generateMessages(){
         try {
             // Wait 1-20 seconds (0-19 plus 1)
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message commandMessage = generateCommandMessage();
-
             mediator.sendMessage(commandMessage);
             logger.logSent(commandMessage);
 
@@ -40,7 +38,6 @@ public class Component extends CommonBroadcastComponent {
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message broadcastToAll = generateTextMessageToAll();
-
             mediator.sendMessage(broadcastToAll);
             logger.logSent(broadcastToAll);
 
@@ -48,7 +45,6 @@ public class Component extends CommonBroadcastComponent {
             Thread.sleep(rand.nextInt(20000) + 1000);
 
             Message broadcastToRandom = generateRandomTextMessage();
-
             mediator.sendMessage(broadcastToRandom);
             logger.logSent(broadcastToRandom);
 

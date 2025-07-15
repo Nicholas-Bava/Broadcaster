@@ -18,9 +18,20 @@ public abstract class CommonBroadcastComponent implements Runnable{
         this.logger = new Logger(ID, logFileName);
     }
 
-    // Implemented by 3 implementations
-    protected abstract void generateMessages();
+    // Implemented by 3 implementations (specific to design pattern)
+    public abstract void generateMessages();
+    // Implemented by 3 implementations (specific to design pattern)
+    public abstract boolean handleMessage(Message msg);
 
+    public void setNextComponent(CommonBroadcastComponent nextComponent) {
+        // does nothing, implementation can override if needed (chain of responsibility)
+    }
+
+    public void update(Message msg) {
+        // does nothing, implementation can override if needed (observer)
+    }
+
+    // Log the incomming text or command execution if message is for this component (either via * or ID)
     protected void processMessageReceived(Message msg) {
         if (msg.getRecipientID().equals("*") || msg.getRecipientID().equals(this.ID)) {
 
@@ -39,6 +50,7 @@ public abstract class CommonBroadcastComponent implements Runnable{
         }
     }
 
+    // Generate a Command
     protected Message generateCommandMessage() {
         Message commandMessage = new Message(this.ID,
                 "COMP_" + Integer.toString(randRecipient.nextInt(10) + 1),
@@ -50,6 +62,7 @@ public abstract class CommonBroadcastComponent implements Runnable{
         return commandMessage;
     }
 
+    // Generate a broadcast message to all components
     protected Message generateTextMessageToAll() {
         Message broadcastToAll = new Message(this.ID,
                 "*",
@@ -59,6 +72,7 @@ public abstract class CommonBroadcastComponent implements Runnable{
         return broadcastToAll;
     }
 
+    // Generate a text message to a random component
     protected Message generateRandomTextMessage() {
         Message broadcastToRandom = new Message(this.ID,
                 "COMP_" + Integer.toString(randRecipient.nextInt(10) + 1),
@@ -72,6 +86,7 @@ public abstract class CommonBroadcastComponent implements Runnable{
         return ID;
     }
 
+    // Run the component as a thread
     @Override
     public void run() {
         generateMessages();

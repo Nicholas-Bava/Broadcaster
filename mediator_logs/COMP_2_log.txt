@@ -1,0 +1,78 @@
+[21:32:58] 
+ COMP_2 RECEIVED 
+ FROM: COMP_9 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:00] 
+ COMP_2 RECEIVED 
+ FROM: COMP_8 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:01] 
+ COMP_2 RECEIVED 
+ FROM: COMP_3 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:02] 
+ COMP_2 SENT: COMMAND 
+ TO: COMP_4 
+ TYPE: COMMAND 
+ PAYLOAD: Test Command
+
+[21:33:03] 
+ COMP_2 RECEIVED 
+ FROM: COMP_6 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:03] 
+ COMP_2 RECEIVED 
+ FROM: COMP_7 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:04] 
+ COMP_2 RECEIVED: 
+ FROM: COMP_5 
+ TYPE: COMMAND 
+ Execution took 13 ms
+
+[21:33:06] 
+ COMP_2 RECEIVED 
+ FROM: COMP_1 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:08] 
+ COMP_2 RECEIVED 
+ FROM: COMP_5 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:11] 
+ COMP_2 RECEIVED 
+ FROM: COMP_10 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:15] 
+ COMP_2 RECEIVED 
+ FROM: COMP_4 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:22] 
+ COMP_2 SENT: TEXT 
+ TO: * 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:35] 
+ COMP_2 SENT: TEXT 
+ TO: COMP_8 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to Random Component
+

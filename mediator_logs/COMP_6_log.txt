@@ -1,0 +1,72 @@
+[21:32:51] 
+ COMP_6 SENT: COMMAND 
+ TO: COMP_9 
+ TYPE: COMMAND 
+ PAYLOAD: Test Command
+
+[21:32:58] 
+ COMP_6 RECEIVED 
+ FROM: COMP_9 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:00] 
+ COMP_6 RECEIVED 
+ FROM: COMP_8 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:01] 
+ COMP_6 RECEIVED 
+ FROM: COMP_3 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:03] 
+ COMP_6 SENT: TEXT 
+ TO: * 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:03] 
+ COMP_6 RECEIVED 
+ FROM: COMP_7 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:06] 
+ COMP_6 RECEIVED 
+ FROM: COMP_1 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:07] 
+ COMP_6 SENT: TEXT 
+ TO: COMP_8 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to Random Component
+
+[21:33:08] 
+ COMP_6 RECEIVED 
+ FROM: COMP_5 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:11] 
+ COMP_6 RECEIVED 
+ FROM: COMP_10 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:15] 
+ COMP_6 RECEIVED 
+ FROM: COMP_4 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
+[21:33:22] 
+ COMP_6 RECEIVED 
+ FROM: COMP_2 
+ TYPE: TEXT 
+ PAYLOAD: Test Message to All Components
+
